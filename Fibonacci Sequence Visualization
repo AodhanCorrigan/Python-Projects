@@ -1,0 +1,29 @@
+from matplotlib.pyplot import plot, show
+n=20#calculate fibonacci sequence up to n
+
+F1=1
+F2=1#define initial vals of fibonacci seq
+fibseq=[]#list where fibonacci seq values are stored (for verif purposes)
+x=range(1,n+1)#0 to 20
+fibra=[]#list for fibonacci ratios
+
+#add initial ratio to ratio list. F_0/F_{-1} does not exist
+fibra.append(F2/F1)
+
+fibseq.append(F1)
+fibseq.append(F2)
+
+for i in range(2,n+1):
+    F3=F1+F2 #calculate next nbr in seq, add to list
+    fibseq.append(F3)
+    F1=F2#set f_{i-2} to f_{i-1} and f_{i-1} to f_{i}
+    F2=F3
+    
+    R=F2/F1#calculate ratio, add to list of ratios
+    fibra.append(R)
+    
+print(fibseq)
+plot(x,fibra,"r--")#dashed line
+plot(x,fibra,"ko")#black dots
+show()
+    
