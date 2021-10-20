@@ -1,0 +1,32 @@
+from numpy import zeros
+from matplotlib.pyplot import imshow, show
+import time
+
+L=int(input("Array size: "))
+t0=time.time()
+
+def isprime(n): #check if n is prime
+    factorlist=[] #newlist
+    k=2 #div by 2 to start
+    while k<=n:
+        while n%k==0:
+            factorlist.append(k)#add k to factor list
+            n//=k #div n by k, int to get next factor
+        k+=1#check if n/k is divisible by (k+1). Continue until n=k
+    if len(factorlist)==1:#if list has only one factor then is prime. 1 for true, 0 for false
+        true_prime=1
+    else:
+        true_prime=0
+    return true_prime
+
+data=zeros([L,L],int)#initialize LxL array with zeros
+
+for i in range(0,L):#decimal value, run through 0 to L
+    for j in range(1,L+1):#single value. Run through 1 to L+1 since 0,10,20,... will be checked by i val
+        x=j+i*L #set x=iL+j (ex 30+1, 0+5, 10+2...)
+        if isprime(x)==1:#if x is a prime, set 
+            data[i][j-1]=1#set i,jth value to 1 taking into account j ranges between 1 and 11 (want 0 to 10)
+        
+print("Time take to compute: ",round(time.time()-t0,2)," seconds")
+imshow(data)
+show()
